@@ -10,13 +10,23 @@ class Problem(models.Model):
     code = models.TextField()
     difficulty = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 class Solution(models.Model):
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
     verdict = models.CharField(max_length=100)
     submitted_at = models.DateTimeField('date published')
+    submitted_code = models.TextField(default='something')
+
+    def __str__(self):
+        return self.verdict
 
 class TestCase(models.Model):
     input_test = models.TextField()
     output_test = models.TextField()
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.input_test
     

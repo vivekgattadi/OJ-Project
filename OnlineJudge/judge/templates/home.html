@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>Hi {{ user.username }}!</h1>
+  <h2>Hurry Up! Click the below link to get into contest: </h2>
+  <a href="{% url 'judge:ListProblems' %}">Contest Link</a>
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}
